@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		439ABA9C20B340B500697BAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABA9B20B340B500697BAA /* AppDelegate.swift */; };
-		439ABA9E20B340B500697BAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABA9D20B340B500697BAA /* ViewController.swift */; };
+		439ABA9E20B340B500697BAA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABA9D20B340B500697BAA /* ListViewController.swift */; };
 		439ABAA120B340B500697BAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439ABA9F20B340B500697BAA /* Main.storyboard */; };
 		439ABAA320B340B600697BAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 439ABAA220B340B600697BAA /* Assets.xcassets */; };
 		439ABAA620B340B600697BAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439ABAA420B340B600697BAA /* LaunchScreen.storyboard */; };
 		439ABAB120B340B600697BAA /* PhotoViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABAB020B340B600697BAA /* PhotoViewerTests.swift */; };
 		439ABABC20B340B600697BAA /* PhotoViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABABB20B340B600697BAA /* PhotoViewerUITests.swift */; };
+		439ABACA20B342AB00697BAA /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABAC920B342AB00697BAA /* DataCenter.swift */; };
+		439ABACC20B34EF500697BAA /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABACB20B34EF500697BAA /* Photo.swift */; };
+		439ABACE20B35D2D00697BAA /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABACD20B35D2D00697BAA /* ListCell.swift */; };
+		439ABAD020B36B4800697BAA /* LargeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABACF20B36B4800697BAA /* LargeImageViewController.swift */; };
+		439ABAD220B37A5600697BAA /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABAD120B37A5600697BAA /* GridViewController.swift */; };
+		439ABAD420B37E5000697BAA /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439ABAD320B37E5000697BAA /* GridCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,7 @@
 /* Begin PBXFileReference section */
 		439ABA9820B340B500697BAA /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		439ABA9B20B340B500697BAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		439ABA9D20B340B500697BAA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		439ABA9D20B340B500697BAA /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		439ABAA020B340B500697BAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		439ABAA220B340B600697BAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		439ABAA520B340B600697BAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +53,12 @@
 		439ABAB720B340B600697BAA /* PhotoViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		439ABABB20B340B600697BAA /* PhotoViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerUITests.swift; sourceTree = "<group>"; };
 		439ABABD20B340B600697BAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		439ABAC920B342AB00697BAA /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
+		439ABACB20B34EF500697BAA /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		439ABACD20B35D2D00697BAA /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		439ABACF20B36B4800697BAA /* LargeImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeImageViewController.swift; sourceTree = "<group>"; };
+		439ABAD120B37A5600697BAA /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		439ABAD320B37E5000697BAA /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +110,13 @@
 			isa = PBXGroup;
 			children = (
 				439ABA9B20B340B500697BAA /* AppDelegate.swift */,
-				439ABA9D20B340B500697BAA /* ViewController.swift */,
+				439ABA9D20B340B500697BAA /* ListViewController.swift */,
+				439ABACD20B35D2D00697BAA /* ListCell.swift */,
+				439ABAD120B37A5600697BAA /* GridViewController.swift */,
+				439ABAD320B37E5000697BAA /* GridCell.swift */,
+				439ABACF20B36B4800697BAA /* LargeImageViewController.swift */,
+				439ABAC920B342AB00697BAA /* DataCenter.swift */,
+				439ABACB20B34EF500697BAA /* Photo.swift */,
 				439ABA9F20B340B500697BAA /* Main.storyboard */,
 				439ABAA220B340B600697BAA /* Assets.xcassets */,
 				439ABAA420B340B600697BAA /* LaunchScreen.storyboard */,
@@ -256,8 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				439ABA9E20B340B500697BAA /* ViewController.swift in Sources */,
+				439ABACC20B34EF500697BAA /* Photo.swift in Sources */,
+				439ABACA20B342AB00697BAA /* DataCenter.swift in Sources */,
+				439ABAD020B36B4800697BAA /* LargeImageViewController.swift in Sources */,
+				439ABAD220B37A5600697BAA /* GridViewController.swift in Sources */,
+				439ABA9E20B340B500697BAA /* ListViewController.swift in Sources */,
 				439ABA9C20B340B500697BAA /* AppDelegate.swift in Sources */,
+				439ABAD420B37E5000697BAA /* GridCell.swift in Sources */,
+				439ABACE20B35D2D00697BAA /* ListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
