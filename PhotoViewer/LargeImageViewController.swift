@@ -9,18 +9,16 @@
 import UIKit
 
 class LargeImageViewController: UIViewController {
-    var photo: Photo;
-    private var btnClose: UIButton!;
+    var photo: Photo!;
     private var displayingClose = false;
+    @IBOutlet weak var btnClose: UIButton!;
+    @IBOutlet weak var imageView: UIImageView!
     
-    init(photo: Photo) {
-        self.photo = photo;
-        super.init(nibName: nil, bundle: nil);
-        self.modalTransitionStyle = .crossDissolve;
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    class func fromStoryboard(photo: Photo) -> LargeImageViewController? {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "LargeImageViewController") as! LargeImageViewController;
+        vc.photo = photo;
+        return vc;
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -30,44 +28,35 @@ class LargeImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        self.modalTransitionStyle = .crossDissolve;
+        
         self.view.backgroundColor = UIColor.black;//.withAlphaComponent(0.2);
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleClose)));
         self.view.isUserInteractionEnabled = true;
         
-        let imageView = UIImageView(frame: self.view.bounds);
-        imageView.frame = self.view.bounds;
-        imageView.contentMode = .scaleAspectFit;
-        self.view.addSubview(imageView);
+        btnClose.setTitleColor(UIColor.lightGray, for: .highlighted);
+        btnClose.addTarget(self, action: #selector(self.close), for: UIControlEvents.touchUpInside);
+        displayingClose = true;
         
         photo.getThumbnail { (thumbnail, error) in
             if let image = thumbnail,
-                imageView.image == nil {
-                imageView.image = image;
+                self.imageView.image == nil {
+                self.imageView.image = image;
             }
         }
         
         photo.getImage { (image, error) in
             if let image = image {
-                imageView.image = image;
+                self.imageView.image = image;
             }
         }
-        
-        let w: CGFloat = 80;
-        btnClose = UIButton(frame: CGRect(x: view.bounds.width - w, y: 0, width: w, height: w/2));
-        btnClose.setTitle("Close", for: .normal);
-        btnClose.setTitleColor(UIColor.white, for: .normal);
-        btnClose.setTitleColor(UIColor.lightGray, for: .highlighted);
-        btnClose.backgroundColor = UIColor.black;
-        btnClose.addTarget(self, action: #selector(self.close), for: UIControlEvents.touchUpInside);
-        self.view.addSubview(btnClose);
-        displayingClose = true;
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         // Toggle the close button after half a second
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.toggleClose();
-        })
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+        //    self.toggleClose();
+        //})
     }
     
     @objc func close() {
@@ -79,15 +68,15 @@ class LargeImageViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.btnClose.alpha = 0;
             }, completion: { (completed) in
-                self.btnClose.removeFromSuperview();
+                self.btnClose.isEnabled = false;
                 self.displayingClose = false;
             });
         } else {
-            self.view.addSubview(self.btnClose);
             UIView.animate(withDuration: 0.2, animations: {
                 self.btnClose.alpha = 1;
             }, completion: { (completed) in
                 self.displayingClose = true;
+                self.btnClose.isEnabled = true;
             });
         }
     }

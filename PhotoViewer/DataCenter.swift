@@ -9,46 +9,44 @@
 import Foundation
 
 class DataCenter {
-    var clientID: String? {
+    var API_Key: String? {
         if let path = Bundle.main.infoDictionary {
-            if let clientID = path["imgur Client ID"] as? String {
-                infoPrint("Client ID is \(clientID).");
+            if let clientID = path["flickr key"] as? String {
+                infoPrint("flickr key is \(clientID).");
                 return clientID;
             } else {
-                infoPrint("Client ID not found.")
+                infoPrint("flickr key not found.")
             }
         }
         return nil;
     }
     
-    var clientSecret: String? {
-        if let path = Bundle.main.infoDictionary {
-            if let clientSecret = path["imgur Client Secret"] as? String {
-                infoPrint("Client Secret is \(clientSecret)");
-                return clientSecret;
-            } else {
-                infoPrint("Client Secret not found.")
-            }
-        }
-        return nil;
-    }
-    
-    var baseURL: URL? {
-        return URL(string: "https://api.imgur.com/3/gallery/hot?showViral=true&mature=false");
+    var baseURLString: String {
+        return "https://api.flickr.com/services/rest/?";
     }
     
     func getPhotos(callback block: (( _ photos: [Photo]?, _ error: Error?) -> Void)?) {
-        if let url = baseURL,
-            let clientID = clientID {
-            let config = URLSessionConfiguration.default;
-            config.httpAdditionalHeaders = ["Authorization" : "Client-ID \(clientID)"];
-            let session = URLSession(configuration: config);
-            let task = session.dataTask(with: url) { (data, response, error) in
+        guard var comps = URLComponents(string: baseURLString), let API_Key = self.API_Key else {
+            block?(nil, MyError("Error: Could not initialize URL Components."));
+            return;
+        }
+        let params = ["format" : "json",
+                      "nojsoncallback" : "1",
+                      "api_key" : API_Key,
+                      "method" : "flickr.galleries.getPhotos",
+                      "gallery_id" : "66911286-72157693170803464"];
+        comps.queryItems = [];
+        for (key, value) in params {
+            comps.queryItems?.append(URLQueryItem(name: key, value: value));
+        }
+        if let url = comps.url {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
                         if let dic = json,
-                            let photoList = dic["data"] as? [[String : Any?]] {
+                            let photos = dic["photos"] as? [String : Any?],
+                            let photoList = photos["photo"] as? [[String: Any?]] {
                             var photos = [Photo]();
                             for photoJson in photoList {
                                 let p = Photo(with: photoJson);
@@ -59,7 +57,7 @@ class DataCenter {
                             block?(photos, nil);
                         } else {
                             infoPrint("Error: Cannot access JSON elements.")
-                            block?(nil, MyError(msg: "Error: Cannot access JSON elements."));
+                            block?(nil, MyError("Error: Cannot access JSON elements."));
                         }
                     } catch let error as NSError {
                         infoPrint(error.localizedDescription);
@@ -79,7 +77,7 @@ class DataCenter {
 
 class MyError: Error {
     private var msg: String
-    init(msg: String) {
+    init( _ msg: String) {
         self.msg = msg;
     }
     var localizedDescription: String {
@@ -87,9 +85,8 @@ class MyError: Error {
     }
 }
 
-
+var debug = false;
 func infoPrint( _ s: String) {
-    let debug = true;
     if debug {
         debugPrint(s);
     }

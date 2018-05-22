@@ -20,7 +20,7 @@ class GridViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        self.title = "imgur Photo Grid";
+        self.title = "Flickr Photo Grid";
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: self, action: #selector(self.switchToList));
     }
     
@@ -43,8 +43,9 @@ class GridViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true);
         
-        let vc = LargeImageViewController(photo: photos[indexPath.row]);
-        self.present(vc, animated: true, completion: nil);
+        if let vc = LargeImageViewController.fromStoryboard(photo: photos[indexPath.row]) {
+            self.present(vc, animated: true, completion: nil);
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

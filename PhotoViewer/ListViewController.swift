@@ -21,7 +21,7 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "imgur Photo List";
+        self.title = "Flickr Photo List";
         self.tableView.tableFooterView = UIView();
         self.tableView.separatorStyle = .none;
         if (photos == nil) {
@@ -80,8 +80,9 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
         
-        let vc = LargeImageViewController(photo: photos[indexPath.row]);
-        self.present(vc, animated: true, completion: nil);
+        if let vc = LargeImageViewController.fromStoryboard(photo: photos[indexPath.row]) {
+            self.present(vc, animated: true, completion: nil);
+        }
     }
 }
 

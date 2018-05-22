@@ -2,15 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>flickr key</key>
+	<string>015502a83c3c21c9d72d1f666eebbaed</string>
+	<key>flickr secret</key>
+	<string>de90c245d6dbdcc1</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>imgur Client ID</key>
-	<string>b9760075eb6c208</string>
-	<key>imgur Client Secret</key>
-	<string>0f0c5cb7a0bc4af73fdbd85c0fa4d2ca63c64a00</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

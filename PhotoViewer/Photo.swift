@@ -12,20 +12,20 @@ class Photo {
     var id: String?;
     var title: String?;
     var imageLink: String?;
-    var H_to_W: CGFloat?
+    var thumbnailLink: String? {
+        return imageLink?.replacingOccurrences(of: ".png", with: "_t.png").replacingOccurrences(of: ".jpg", with: "_t.jpg");
+    }
     private var image: UIImage?;
     private var thumbnailImage: UIImage?;
     
     init(with dic: [String: Any?]) {
         self.id = dic["id"] as? String;
         self.title = dic["title"] as? String;
-        let image = (dic["images"] as? [[String: Any?]])?[0];
-        if (image?["type"] as? String == "image/jpeg" || image?["type"] as? String == "image/png") {
-            self.imageLink = image?["link"] as? String;
-            if let height = image?["height"] as? CGFloat,
-                let width = image?["width"] as? CGFloat {
-                self.H_to_W = height / width;
-            }
+        if let id = self.id,
+            let secret = dic["secret"] as? String,
+            let farm = dic["farm"] as? Int,
+            let server = dic["server"] as? String {
+            self.imageLink = "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret).jpg";
         }
     }
     
@@ -34,7 +34,7 @@ class Photo {
             block?(image, nil);
         } else {
             guard let link = self.imageLink, !link.isEmpty, let url = URL(string: link) else {
-                block?(nil, MyError(msg: "Error: Couldn't formulate URL for image."));
+                block?(nil, MyError("Error: Couldn't formulate URL for image."));
                 return;
             }
             infoPrint("Image link: \(link)")
@@ -61,10 +61,10 @@ class Photo {
         if let image = self.thumbnailImage {
             block?(image, nil);
         } else {
-            guard let link = imageLink?.replacingOccurrences(of: ".png", with: "s.png").replacingOccurrences(of: ".jpg", with: "s.jpg"),
+            guard let link = thumbnailLink,
                 !link.isEmpty,
                 let url = URL(string: link) else {
-                block?(nil, MyError(msg: "Error: Couldn't formulate URL for image."));
+                block?(nil, MyError("Error: Couldn't formulate URL for image."));
                 return;
             }
             

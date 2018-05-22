@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -89,7 +90,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="167" height="171"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UMz-MZ-pGb" userLabel="imgPhoto">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UMz-MZ-pGb" userLabel="imgPhoto">
                                             <rect key="frame" x="0.0" y="0.0" width="167" height="171"/>
                                         </imageView>
                                     </subviews>
@@ -116,6 +117,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNG-Mu-k0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1868" y="832.53373313343332"/>
+        </scene>
+        <!--Large Image View Controller-->
+        <scene sceneID="9WZ-eo-soL">
+            <objects>
+                <viewController storyboardIdentifier="LargeImageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GaI-tV-Ru8" customClass="LargeImageViewController" customModule="PhotoViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mkg-uu-zHM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="40G-qT-C9L" userLabel="imgPhoto">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VH1-qX-erj" userLabel="btnClose">
+                                <rect key="frame" x="295" y="20" width="80" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="A9A-Gw-IGD"/>
+                                    <constraint firstAttribute="height" constant="40" id="VVG-Xo-Wwo"/>
+                                </constraints>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="40G-qT-C9L" firstAttribute="bottom" secondItem="2Eu-uw-Rhq" secondAttribute="bottom" id="0al-L6-7Ff"/>
+                            <constraint firstItem="40G-qT-C9L" firstAttribute="trailing" secondItem="2Eu-uw-Rhq" secondAttribute="trailing" id="3of-iF-mh9"/>
+                            <constraint firstItem="VH1-qX-erj" firstAttribute="top" secondItem="2Eu-uw-Rhq" secondAttribute="top" id="BHQ-M4-4dm"/>
+                            <constraint firstItem="VH1-qX-erj" firstAttribute="trailing" secondItem="2Eu-uw-Rhq" secondAttribute="trailing" id="EzG-J6-PUS"/>
+                            <constraint firstItem="40G-qT-C9L" firstAttribute="leading" secondItem="2Eu-uw-Rhq" secondAttribute="leading" id="j2s-9I-mgw"/>
+                            <constraint firstItem="40G-qT-C9L" firstAttribute="top" secondItem="2Eu-uw-Rhq" secondAttribute="top" id="uMU-Ye-x9d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Eu-uw-Rhq"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnClose" destination="VH1-qX-erj" id="fgY-PO-dic"/>
+                        <outlet property="imageView" destination="40G-qT-C9L" id="kmH-eE-Qf7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9JT-dJ-RZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2647.1999999999998" y="832.53373313343332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dh7-rC-T1L">
