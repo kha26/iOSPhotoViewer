@@ -18,6 +18,10 @@ class ListViewController: UITableViewController {
         return vc;
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,13 +36,17 @@ class ListViewController: UITableViewController {
                     self.photos = lst;
                     DispatchQueue.main.async {
                         self.tableView.reloadData();
-                        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "#", style: .plain, target: self, action: #selector(self.switchToGrid));
+                        self.setRightBarButton();
                     }
                 }
             }
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "#", style: .plain, target: self, action: #selector(self.switchToGrid));
+            self.setRightBarButton();
         }
+    }
+    
+    private func setRightBarButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid"), style: .plain, target: self, action: #selector(self.switchToGrid));
     }
     
     @objc func switchToGrid() {
@@ -66,7 +74,12 @@ class ListViewController: UITableViewController {
             cell.backgroundColor = UIColor.white;
         }
         
-        cell.lblTitle.text = photo.title;
+        if let title = photo.title, !title.isEmpty {
+            cell.lblTitle.text = photo.title;
+        } else {
+            // Not all images have titles :(
+            cell.lblTitle.text = "Photo";
+        }
         
         photo.getThumbnail { (image, error) in
             if (cell.id == photo.id) {

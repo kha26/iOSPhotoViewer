@@ -9,6 +9,7 @@
 import UIKit
 
 class GridViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    let numberOfPhotosPerRow: CGFloat = 4;
     var photos: [Photo]!;
     
     class func fromStoryboard(photos: [Photo]) -> GridViewController? {
@@ -18,10 +19,14 @@ class GridViewController: UICollectionViewController, UICollectionViewDelegateFl
         return vc;
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         self.title = "Flickr Photo Grid";
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: self, action: #selector(self.switchToList));
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(self.switchToList));
     }
     
     @objc func switchToList() {
@@ -65,7 +70,7 @@ class GridViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = collectionView.bounds.width / 4;
+        let w = collectionView.bounds.width / numberOfPhotosPerRow;
         return CGSize(width: w, height: w);
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

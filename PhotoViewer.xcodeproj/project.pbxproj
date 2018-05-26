@@ -86,6 +86,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		431F582C20B9B83100B982ED /* API */ = {
+			isa = PBXGroup;
+			children = (
+				439ABAC920B342AB00697BAA /* DataCenter.swift */,
+				439ABACB20B34EF500697BAA /* Photo.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		431F582D20B9B84300B982ED /* List View */ = {
+			isa = PBXGroup;
+			children = (
+				439ABA9D20B340B500697BAA /* ListViewController.swift */,
+				439ABACD20B35D2D00697BAA /* ListCell.swift */,
+			);
+			path = "List View";
+			sourceTree = "<group>";
+		};
+		431F582E20B9B84B00B982ED /* Grid View */ = {
+			isa = PBXGroup;
+			children = (
+				439ABAD120B37A5600697BAA /* GridViewController.swift */,
+				439ABAD320B37E5000697BAA /* GridCell.swift */,
+			);
+			path = "Grid View";
+			sourceTree = "<group>";
+		};
+		431F582F20B9B85200B982ED /* Large Image View */ = {
+			isa = PBXGroup;
+			children = (
+				439ABACF20B36B4800697BAA /* LargeImageViewController.swift */,
+			);
+			path = "Large Image View";
+			sourceTree = "<group>";
+		};
 		439ABA8F20B340B500697BAA = {
 			isa = PBXGroup;
 			children = (
@@ -110,13 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				439ABA9B20B340B500697BAA /* AppDelegate.swift */,
-				439ABA9D20B340B500697BAA /* ListViewController.swift */,
-				439ABACD20B35D2D00697BAA /* ListCell.swift */,
-				439ABAD120B37A5600697BAA /* GridViewController.swift */,
-				439ABAD320B37E5000697BAA /* GridCell.swift */,
-				439ABAC920B342AB00697BAA /* DataCenter.swift */,
-				439ABACF20B36B4800697BAA /* LargeImageViewController.swift */,
-				439ABACB20B34EF500697BAA /* Photo.swift */,
+				431F582C20B9B83100B982ED /* API */,
+				431F582D20B9B84300B982ED /* List View */,
+				431F582E20B9B84B00B982ED /* Grid View */,
+				431F582F20B9B85200B982ED /* Large Image View */,
 				439ABA9F20B340B500697BAA /* Main.storyboard */,
 				439ABAA220B340B600697BAA /* Assets.xcassets */,
 				439ABAA420B340B600697BAA /* LaunchScreen.storyboard */,

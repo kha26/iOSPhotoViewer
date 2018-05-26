@@ -21,6 +21,9 @@ class DataCenter {
         return nil;
     }
     
+    // I found a photo gallery on Flickr, this is the id
+    var gallery_id: String = "66911286-72157693718156901";
+    
     var baseURLString: String {
         return "https://api.flickr.com/services/rest/?";
     }
@@ -34,7 +37,7 @@ class DataCenter {
                       "nojsoncallback" : "1",
                       "api_key" : API_Key,
                       "method" : "flickr.galleries.getPhotos",
-                      "gallery_id" : "66911286-72157693170803464"];
+                      "gallery_id" : gallery_id];
         comps.queryItems = [];
         for (key, value) in params {
             comps.queryItems?.append(URLQueryItem(name: key, value: value));
