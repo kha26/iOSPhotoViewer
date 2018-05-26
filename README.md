@@ -1,5 +1,5 @@
 # iOSPhotoViewer
-An application to view photos from imgur. You can view the list of photos in a list view or in a grid view. You can also tap on photos to enlarge them.
+An application to view photos from Flickr. You can view the list of photos in a list view or in a grid view. You can also tap on photos to enlarge them.
 
 <p><b>The List View </b></p>
 <p>The images are displayed in a list using a UITableViewController.</p>
